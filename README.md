@@ -2,8 +2,9 @@ levelup-autotable
 =================
 
 Auto increment key table for node-levelup, leveldb.
-Auto incrementing keys.
-Read, write, delete fields in a record individually.
+
+Auto incrementing keys.  
+Read, write, delete fields in a record individually.  
 Read, write, delete records.
 
     db = require('levelup')('./mydb')
