@@ -23,7 +23,7 @@ Get a new key. The key is a string with integer value starting from `1`. Use `pa
         key = newKey
     })
 
-Handle fields individually.
+Handle fields individually.  
 Put a field
     db.putField(key, "name", "John", options, callback)
     db.putField(key, "email", "john@example.org", options, callback)
