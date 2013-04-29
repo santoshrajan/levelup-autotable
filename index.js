@@ -49,7 +49,7 @@ methods.getRecord = function(key, callback) {
     var ret = {}
     this.createReadStream({start: key, end: parseInt(key) + 1})
         .on('data', function (data) {
-            ret[data.key] = data.value
+            ret[data.key.split(':')[1]] = data.value
         })
         .on('error', function (err) {
             callback(err)
