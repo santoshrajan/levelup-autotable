@@ -6,7 +6,7 @@ methods.initAutoKeys = function(callback) {
     if (typeof counter != 'undefined') {
         return callback()
     }
-    this.get('__counter', function (err, value) {
+    this.get('~counter', function (err, value) {
         if (err) {
             if (err.name === 'NotFoundError') {
                 counter = 0
@@ -24,7 +24,7 @@ methods.newAutoKey = function(callback) {
     if (typeof callback != 'function') {
         throw new Error("newKey requires a callback function")
     }
-    this.put("__counter", ++counter, function(err) {
+    this.put("~counter", ++counter, function(err) {
         callback(err, counter.toString())
     })
 }
