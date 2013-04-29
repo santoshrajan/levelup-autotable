@@ -1,4 +1,4 @@
-levelup-autotable
+level-autotable
 =================
 
 Auto increment key table for node-levelup, leveldb.
@@ -7,8 +7,8 @@ Auto incrementing keys.
 Read, write, delete fields in a record individually.  
 Read, write, delete records.
 
-    db = require('levelup')('./mydb')
-    require("levelup-autotable")(db)
+    var db = require('levelup')('./mydb')
+    require("level-autotable")(db)
 
 You must call `initAutoKeys` before using the database.
 
@@ -20,7 +20,7 @@ You can call this from inside a request handler. Initialization is done the firs
         db.initAutoKeys(function() {next()})
     })
 
-Get a new key. The key is a string with integer value starting from `1`. Use `parseInt` to do math on the key. 
+Get a new key. The key is a string with integer value starting from `1`. Use `parseInt` to do math on the key. Will throw an error if callback is not a function.
 
     var key
     db.newAutoKey(function(err, newKey) {
@@ -33,7 +33,7 @@ Put a field
     db.putField(key, "name", "John", options, callback)
     db.putField(key, "email", "john@example.org", options, callback)
 
-The fieldname must be a valid javascript var name. ie only word chars `_` and `$` allowed.
+The fieldname must be a valid javascript var name. ie only word chars `_` and `$` allowed. Will throw an error otherwise!
 
 Get a field.
 

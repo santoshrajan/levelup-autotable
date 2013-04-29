@@ -1,5 +1,5 @@
 {
-  "name"          : "levelup-autotable",
+  "name"          : "level-autotable",
   "description"   : "Auto increment key table for node-levelup/leveldb",
   "keywords"      : ["levelup", "levedb", "javascript", "server", "table"],
   "author"        : "Santosh Rajan <santrajan@gmail.com>",
