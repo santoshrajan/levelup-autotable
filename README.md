@@ -61,9 +61,6 @@ Delete a record.
         //
     })
 
-#### Considerations
-
-You can only use one instance of `level-autotable` per process. ie you cannot have two databases with level-autotable` in the same process.
 
 
 
