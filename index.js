@@ -2,8 +2,7 @@
 module.exports = function(db) {
 
     var counter,
-        validName = /^[a-zA-Z_$][0-9a-zA-Z_$]*$/,
-        methods = {}
+        validName = /^[a-zA-Z_$][0-9a-zA-Z_$]*$/
 
     db.initAutoKeys = function(callback) {
         if (typeof counter != 'undefined') {
@@ -13,13 +12,13 @@ module.exports = function(db) {
             if (err) {
                 if (err.name === 'NotFoundError') {
                     counter = 0
-               } else {
+                } else {
                    throw err
-               }
-           } else {
+                }
+            } else {
                counter = value
-           }
-           callback()
+            }
+            callback()
         })
     }
 
@@ -50,7 +49,7 @@ module.exports = function(db) {
 
     db.getRecord = function(key, callback) {
         var ret = {}
-        this.createReadStream({start: key, end: parseInt(key) + 1})
+        this.createReadStream({start: key, end: parseInt(key, 10) + 1})
             .on('data', function (data) {
                 ret[data.key.split(':')[1]] = data.value
             })
@@ -75,7 +74,7 @@ module.exports = function(db) {
     db.delRecord = function(key, callback) {
         var ops = []
         var db = this
-        this.createReadStream({start: key, end: parseInt(key) + 1})
+        this.createReadStream({start: key, end: parseInt(key, 10) + 1})
             .on('data', function (data) {
                 ops.push({type: 'del', key: data.key})
             })
@@ -87,25 +86,6 @@ module.exports = function(db) {
                     if (err) return callback(err)
                     callback()
                 })
-            })
-    }
-
-    db.dump = function(callback) {
-        this.createReadStream()
-            .on('data', function (data) {
-                console.log(data.key, '=', data.value)
-            })
-            .on('error', function (err) {
-                if (callback) {
-                    callback(err)
-                } else {
-                    throw err
-                }
-            })
-            .on('end', function (err) {
-                if (callback) {
-                    callback()
-                }
             })
     }
 }
