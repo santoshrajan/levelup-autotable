@@ -49,7 +49,7 @@ module.exports = function(db) {
 
     db.getRecord = function(key, callback) {
         var ret = {}
-        this.createReadStream({start: key, end: parseInt(key, 10) + 1})
+        this.createReadStream({start: key + ':', end: key + ':\xff'})
             .on('data', function (data) {
                 ret[data.key.split(':')[1]] = data.value
             })
@@ -74,7 +74,7 @@ module.exports = function(db) {
     db.delRecord = function(key, callback) {
         var ops = []
         var db = this
-        this.createReadStream({start: key, end: parseInt(key, 10) + 1})
+        this.createReadStream({start: key + ':', end: key + ':\xff'})
             .on('data', function (data) {
                 ops.push({type: 'del', key: data.key})
             })
